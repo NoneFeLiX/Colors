@@ -1,0 +1,29 @@
+from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+root.title("Colors")
+root.geometry("250x250")
+root.resizable(False, False)
+
+red = "red"
+blue = "blue"
+green = "green"
+selected_color = StringVar(value=red)
+
+canvas = Canvas(bg="white", width=250, height=150)
+canvas.pack(anchor=NW)
+
+canvas.create_rectangle((10, 80, 130, 130), fill=selected_color.get(), outline="black", tags="house")
+canvas.create_polygon((10, 80), (70, 30), (130, 80), fill=selected_color.get(), outline="black", tags="house")
+
+
+def select():
+    canvas.itemconfigure("house", fill=selected_color.get())
+
+
+ttk.Radiobutton(text=red, value=red, variable=selected_color, command=select, padding=6).pack(anchor=NW)
+ttk.Radiobutton(text=blue, value=blue, variable=selected_color, command=select, padding=6).pack(anchor=NW)
+ttk.Radiobutton(text=green, value=green, variable=selected_color, command=select, padding=6).pack(anchor=NW)
+
+root.mainloop()
